@@ -13,10 +13,11 @@ Public Class Form1
     Dim imgDisplayTimestampWithScreenshots As Boolean
     Dim imgDltScrnshtsOnClose As Boolean
     Dim oIni As New IniFile
-    Dim WithEvents hkM As HotkeyManager
+    Dim WithEvents hkManager As HotkeyManager
     Dim configFile As String
     Dim docGenerated As Boolean = False
     Dim emailGenerated As Boolean = False
+
 
     Function getTimeStamp(Optional ByVal format As String = "yyyyMMdd") As String
         Dim theDate As DateTime = Now
@@ -65,6 +66,7 @@ Public Class Form1
             Me.Button2.Enabled = False
             Me.Button3.Enabled = False
             Me.Button4.Enabled = False
+            Me.GoToScreenshotsFolderToolStripMenuItem.Enabled = False
             imgCaptureCounter = 0
             imgCaptions.Clear()
             If Directory.Exists(imgCaptureFolder) Then
@@ -88,21 +90,25 @@ Public Class Form1
         imgDisplayTimestampWithScreenshots = Convert.ToBoolean(configs("DisplayTimestampUnderScreenshots"))
 
         If imgPromptForCaption Then
-            PromptForCaptionsToolStripMenuItem.Checked = True
+            Me.PromptForCaptionsToolStripMenuItem.Checked = True
         Else
-            PromptForCaptionsToolStripMenuItem.Checked = False
+            Me.PromptForCaptionsToolStripMenuItem.Checked = False
         End If
 
         If imgDltScrnshtsOnClose Then
-            DeleteScreenshotsOnCloseToolStripMenuItem.Checked = True
+            Me.DeleteScreenshotsOnCloseToolStripMenuItem.Checked = True
         Else
-            DeleteScreenshotsOnCloseToolStripMenuItem.Checked = False
+            Me.DeleteScreenshotsOnCloseToolStripMenuItem.Checked = False
         End If
 
         If imgDisplayTimestampWithScreenshots Then
-            ShowTimestampBelowScreenshotsToolStripMenuItem.Checked = True
+            Me.ShowTimestampBelowScreenshotsToolStripMenuItem.Checked = True
         Else
-            ShowTimestampBelowScreenshotsToolStripMenuItem.Checked = False
+            Me.ShowTimestampBelowScreenshotsToolStripMenuItem.Checked = False
+        End If
+
+        If imgCaptureFolder Is Nothing Then
+            Me.GoToScreenshotsFolderToolStripMenuItem.Enabled = False
         End If
 
         Me.Text = getApplicationTitle()
@@ -112,12 +118,12 @@ Public Class Form1
 
         'Creat a new instance of HotkeyManager
         'objec and pass this form as its argument.
-        Me.hkM = New HotkeyManager(Me)
+        Me.hkManager = New HotkeyManager(Me)
         Try
             'Create a Hotkey object with its Id = 100 and value = Alt+G.
-            Dim hk As New Hotkey(100, Keys.Alt Or Keys.G)
+            Dim hkPrintScreen As New Hotkey(100, Keys.Control Or Keys.PrintScreen)
             'Register the Alt+G.
-            Me.hkM.RegisterHotkey(hk, True)
+            Me.hkManager.RegisterHotkey(hkPrintScreen, True)
         Catch ex As Exception
             'An exception is throw, show the exception message.
             MessageBox.Show(ex.Message)
@@ -141,18 +147,23 @@ Public Class Form1
             MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
         End Try
 
-        If Me.hkM IsNot Nothing Then
+        If Me.hkManager IsNot Nothing Then
             'Dispose the HotkeyManager objec when the application is exiting.
             'This method will unregister all hotkeys for this HotkeyManager.
-            Me.hkM.Dispose()
+            Me.hkManager.Dispose()
         End If
     End Sub 'Form1_Closing
 
     Private Sub hk_HotkeyPressed(ByVal sender As Object, _
-            ByVal e As HotkeyEventArgs) Handles hkM.HotkeyPressed
+            ByVal e As HotkeyEventArgs) Handles hkManager.HotkeyPressed
         'A hotkey is pressed, show the hotkey in a lable.
-        'Me.HotkeyLabel.Text = e.Hotkey.ToString
-        Button1_Click(sender, e)
+        'MsgBox(e.Hotkey.ToString)
+        Select Case e.Hotkey.ToString
+            Case "Ctrl+PrintScreen"
+                Button1_Click(sender, e)
+            Case Else
+
+        End Select
     End Sub
 
 
@@ -230,9 +241,9 @@ Public Class Form1
             If MsgBox("A document or an eMail has been generated with the previous set of Screenshots. Click Yes to start anew or No to continue adding to the existing set of screenshots.", _
                       52, "Reload") = MsgBoxResult.Yes Then
                 resetAppGlobals()
-                docGenerated = False
-                emailGenerated = False
             End If
+            docGenerated = False
+            emailGenerated = False
         End If
 
         If Not Directory.Exists(imgCaptureFolder) Then
@@ -269,6 +280,7 @@ Public Class Form1
             Me.Button2.Enabled = True
             Me.Button3.Enabled = True
             Me.Button4.Enabled = True
+            Me.GoToScreenshotsFolderToolStripMenuItem.Enabled = True
         Catch ex As Exception
             MsgBox("sorry unable to snap your screen and save at the moment please try again later", MsgBoxStyle.Critical, "Warning!")
             Me.Close()
@@ -303,32 +315,33 @@ Public Class Form1
     End Sub
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        Dim OutlookMessage As outlook.MailItem
-        Dim AppOutlook As New outlook.Application
-        Dim PIctureLocation As String
-        Dim mailBody As String
-        Dim colAttach As outlook.Attachments
-        Dim oAttach As outlook.Attachment
-
-        OutlookMessage = AppOutlook.CreateItem(outlook.OlItemType.olMailItem)
-        colAttach = OutlookMessage.Attachments
-
-        mailBody = "<div>"
-        For x = 0 To imgCaptureCounter - 1
-            PIctureLocation = imgCaptureFolder & "\" & x & ".jpg"
-            oAttach = colAttach.Add(PIctureLocation)
-
-            'mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><b>Screenshot " & x + 1 & "</b><u></u><u></u></span></p>"
-            mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><img width=""831"" height=""467"" src=""cid:" & x & ".jpg"" class=""></span><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><u></u><u></u></span></p>"
-            mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"">" & imgCaptions(x).ToString & "<u></u><u></u></span></p>"
-            If x <> imgCaptureCounter - 1 Then
-                mailBody &= "<hr>"
-            End If
-
-        Next
-        mailBody &= "</div>"
-        mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"">This mail was generated using " & getApplicationTitle() & "! " & My.Application.Info.Description & "</span><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><u></u><u></u></span></p>"
         Try
+            Dim OutlookMessage As outlook.MailItem
+            Dim AppOutlook As New outlook.Application
+            Dim PIctureLocation As String
+            Dim mailBody As String
+            Dim colAttach As outlook.Attachments
+            Dim oAttach As outlook.Attachment
+
+            OutlookMessage = AppOutlook.CreateItem(outlook.OlItemType.olMailItem)
+            colAttach = OutlookMessage.Attachments
+
+            mailBody = "<div>"
+            For x = 0 To imgCaptureCounter - 1
+                PIctureLocation = imgCaptureFolder & "\" & x & ".jpg"
+                oAttach = colAttach.Add(PIctureLocation)
+
+                'mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><b>Screenshot " & x + 1 & "</b><u></u><u></u></span></p>"
+                mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><img width=""831"" height=""467"" src=""cid:" & x & ".jpg"" class=""></span><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><u></u><u></u></span></p>"
+                mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"">" & imgCaptions(x).ToString & "<u></u><u></u></span></p>"
+                If x <> imgCaptureCounter - 1 Then
+                    mailBody &= "<hr>"
+                End If
+
+            Next
+            mailBody &= "</div>"
+            mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"">This mail was generated using " & getApplicationTitle() & "! " & My.Application.Info.Description & "</span><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><u></u><u></u></span></p>"
+
 
             'Dim Recipents As outlook.Recipients = OutlookMessage.Recipients
             'Recipents.Add("myemail@hotmail.com")
@@ -341,13 +354,14 @@ Public Class Form1
         Catch ex As Exception
             MessageBox.Show("Mail could not be sent") 'if you dont want this message, simply delete this line 
         Finally
-            OutlookMessage = Nothing
-            AppOutlook = Nothing
+            'OutlookMessage = Nothing
+            'AppOutlook = Nothing
         End Try
     End Sub
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
-        If MsgBox("This action will permanently delete all files created so far. Continue?", 36, "Reset application") = MsgBoxResult.Yes Then
+        If MsgBox("This action will make me forget all screenshots taken so far. Continue?", 36, "Reset application") = MsgBoxResult.Yes Then
+            Dim i As Integer = 10
             resetAppGlobals()
         End If
     End Sub
@@ -355,4 +369,10 @@ Public Class Form1
     Private Sub HelpToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpToolStripMenuItem.Click
 
     End Sub
+
+    Private Sub GoToScreenshotsFolderToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GoToScreenshotsFolderToolStripMenuItem.Click
+        Process.Start(imgCaptureFolder)
+    End Sub
+
+    
 End Class

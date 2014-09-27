@@ -42,12 +42,14 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button
         Me.ToolTip4 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Button4 = New System.Windows.Forms.Button
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.GoToScreenshotsFolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolsToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolsToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(284, 24)
@@ -183,6 +185,19 @@ Partial Class Form1
         Me.ToolTip4.SetToolTip(Me.Button4, "Reset Application")
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GoToScreenshotsFolderToolStripMenuItem})
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(48, 20)
+        Me.ToolStripMenuItem1.Text = "Tools"
+        '
+        'GoToScreenshotsFolderToolStripMenuItem
+        '
+        Me.GoToScreenshotsFolderToolStripMenuItem.Name = "GoToScreenshotsFolderToolStripMenuItem"
+        Me.GoToScreenshotsFolderToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
+        Me.GoToScreenshotsFolderToolStripMenuItem.Text = "Go to Screenshots Folder..."
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -224,5 +239,7 @@ Partial Class Form1
     Friend WithEvents ToolTip2 As System.Windows.Forms.ToolTip
     Friend WithEvents ToolTip3 As System.Windows.Forms.ToolTip
     Friend WithEvents ToolTip4 As System.Windows.Forms.ToolTip
+    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents GoToScreenshotsFolderToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class
