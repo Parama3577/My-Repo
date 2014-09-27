@@ -1,0 +1,188 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Screen2Doc
+</name>
+</assembly>
+<members>
+<member name="F:Screen2Doc.Hotkey.Empty">
+	<summary>
+ Represents a Hotkey that has Hotkey.Id set to zero and Hotkey.Data set to System.Windows.Forms.Keys.None.
+ </summary>
+</member><member name="M:Screen2Doc.Hotkey.#ctor(System.Int32,System.Windows.Forms.Keys)">
+	<param name="id">A unique hotkey id that is in the range 0x0000 through 0xBFFF.</param>
+	<param name="data">The Hotkey data. This parameter can contain one or combination of 
+ Keys.Ctrl, Keys.Alt or Keys.Shift fodifier keys and any key, combined with OR.</param>
+</member><member name="P:Screen2Doc.Hotkey.Alt">
+	<summary>
+ Gets a Boolean indicating if the ALT key is present.
+ </summary>
+</member><member name="P:Screen2Doc.Hotkey.Control">
+	<summary>
+ Gets a Boolean indicating if the CTRL key is present.
+ </summary>
+</member><member name="P:Screen2Doc.Hotkey.Shift">
+	<summary>
+ Gets a Boolean indicating if the SHIFT key is present.
+ </summary>
+</member><member name="P:Screen2Doc.Hotkey.Modifiers">
+	<summary>
+ Gets the modifiers of the hotkey.
+ </summary>
+</member><member name="P:Screen2Doc.Hotkey.Key">
+	<summary>
+ Gets the key of the hotkey.
+ </summary>
+</member><member name="P:Screen2Doc.Hotkey.Data">
+	<summary>
+ Gets or sets the hotkey data. Hotkey data can contain one or combination of 
+ Keys.Ctrl, Keys.Alt or Keys.Shift fodifier keys and any key, combined with OR.
+ </summary>
+</member><member name="P:Screen2Doc.Hotkey.Id">
+	<summary>
+ Gets the hotkey id.
+ </summary>
+</member><member name="P:Screen2Doc.Hotkey.Name">
+	<summary>
+ Gets the hotkey name.
+ </summary>
+</member><member name="M:Screen2Doc.Hotkey.Equals(System.Object)">
+	<summary>
+ Determines whether the specified System.Object is equal to the current System.Object.
+ </summary>
+</member><member name="M:Screen2Doc.Hotkey.GetHashCode">
+	<summary>
+ Serves as a hash function for a particular type. Hotkey.GetHashCode is 
+ suitable for use in hashing algorithms and data structures like a hash table.
+ </summary>
+</member><member name="M:Screen2Doc.Hotkey.ToString">
+	<summary>
+ Returns a System.String that represents the current Hotkey.
+ </summary>
+</member><member name="M:Screen2Doc.Hotkey.ToString(System.Windows.Forms.Keys)">
+	<summary>
+ Returns a System.String that represents the specified Hotkey.
+ </summary>
+	<param name="data">A Hotkey data. This parameter can contain one or combination of 
+ Keys.Ctrl, Keys.Alt or Keys.Shift fodifier keys and any key, combined with OR.</param>
+</member><member name="E:Screen2Doc.HotkeyManager.HotkeyPressed">
+	<summary>
+ Occurs when a registered hotkey by the HotkeyManager is pressed.
+ </summary>
+</member><member name="P:Screen2Doc.HotkeyManager.Hotkeys">
+	<summary>
+ Gets a collection of hot keys that have been registered by the HotkeyManager.
+ </summary>
+</member><member name="P:Screen2Doc.HotkeyManager.Handle">
+	<summary>
+ Gets the handle to the window associated with the HotkeyManager.
+ </summary>
+</member><member name="M:Screen2Doc.HotkeyManager.#ctor(System.Windows.Forms.Form)">
+	<param name="window">
+ A valid window (Form) within the project associated with the HotkeyManager.
+ </param>
+</member><member name="M:Screen2Doc.HotkeyManager.RegisterHotkey(System.Int32,System.Windows.Forms.Keys,System.Boolean)">
+	<summary>
+ Registers an application hotkey.
+ </summary>
+	<param name="hotkeyId">A unique hotkey id that is in the range 0x0000 through 0xBFFF.</param>
+	<param name="hotkeyData">A Hotkey data. This parameter can contain one or combination of 
+ Keys.Ctrl, Keys.Alt or Keys.Shift fodifier keys and any key, combined with OR.</param>
+	<param name="throwException">Specifies whether an exception should be thrown after the method fails.</param>
+</member><member name="M:Screen2Doc.HotkeyManager.RegisterHotkey(Screen2Doc.Hotkey,System.Boolean)">
+	<summary>
+ Registers an application hotkey.
+ </summary>
+	<param name="hk">A HotkeyManager.Hotkey to registerd.</param>
+	<param name="throwException">Specifies whether an exception should be thrown after the method fails.</param>
+</member><member name="M:Screen2Doc.HotkeyManager.UnregisterHotkey(System.Int32,System.Boolean)">
+	<summary>
+ Unregisters an application hotkey that was previously registered.
+ </summary>
+	<param name="hotkeyId">A hotkey id. 
+ If the function succeeds, the return value is the unregistered hotkey.</param>
+	<param name="throwException">Specifies whether an exception should be thrown after the method fails.</param>
+</member><member name="M:Screen2Doc.HotkeyManager.Replace(Screen2Doc.Hotkey,System.Boolean)">
+	<summary>
+ Replaces the hotkey data for the same hotkey id.
+ </summary>
+	<param name="hk">The hotkey whose data should be replace.</param>
+</member><member name="M:Screen2Doc.HotkeyManager.IsAvailable(System.Windows.Forms.Keys)">
+	<summary>
+ Determines whether a hotkey with the specified hotkey data is available.
+ </summary>
+	<param name="hotkeyData">A System.Windows.Form.Keys that represents the hotkey data to be checked.
+ This parameter can contain one or combination of Keys.Ctrl, 
+ Keys.Alt or Keys.Shift fodifier keys and any key, combined with OR.</param>
+</member><member name="M:Screen2Doc.HotkeyManager.ContainsId(System.Int32)">
+	<summary>
+ Determines whether a hotkey with the specified id is registered by the HotkeyManager.
+ </summary>
+	<param name="hotkeyId">A hotkey id.</param>
+</member><member name="M:Screen2Doc.HotkeyManager.ContainsData(System.Windows.Forms.Keys)">
+	<summary>
+ Determines whether a hotkey with the specified hotkey data is registered by the HotkeyManager.
+ </summary>
+	<param name="hotkeyData">A hotkey data.</param>
+</member><member name="M:Screen2Doc.HotkeyManager.ConvertTo(Screen2Doc.HotkeyManager.Modifier)">
+	<summary>
+ Converts a HotkeyManager.Modifier to System.Windows.Forms.Keys (modifires).
+ </summary>
+	<param name="modifiers">A HotkeyManager.Modifier that should be converted to a System.Windows.Forms.Keys.</param>
+</member><member name="M:Screen2Doc.HotkeyManager.ConvertTo(System.Windows.Forms.Keys)">
+	<summary>
+ Converts a System.Windows.Forms.Keys (modifires) to HotkeyManager.Modifier.
+ </summary>
+	<param name="modifiers">A System.Windows.Forms.Keys that should be converted to a HotkeyManager.Modifier.</param>
+</member><member name="M:Screen2Doc.HotkeyManager.Dispose">
+	<summary>
+ Unregisters all hotkeys and releases all resources used by the HotkeyManager.
+ </summary>
+</member><member name="T:Screen2Doc.HotkeyManager.NativeMethods">
+	<summary>
+ Represents win32 Api shared methods, structures, and constants.
+ </summary>
+</member><member name="T:Screen2Doc.HotkeyManager">
+	<summary>
+ Registers or unregisters application hotkeys.
+ </summary>
+</member><member name="M:Screen2Doc.HotkeyEventArgs.#ctor(Screen2Doc.Hotkey,System.IntPtr)">
+	<param name="hk">The HotkeyManager.Hotkey that contains the hot key information.</param>
+	<param name="handle">The window handle of the message.</param>
+</member><member name="P:Screen2Doc.HotkeyEventArgs.Window">
+	<summary>
+ Gets the window handle of the message.
+ </summary>
+</member><member name="P:Screen2Doc.HotkeyEventArgs.Hotkey">
+	<summary>
+ Gets HotkeyManager.Hotkey that contains the pressed hot key information.
+ </summary>
+</member><member name="T:Screen2Doc.HotkeyEventArgs">
+	<summary>
+ Provides data for HotkeyManager events.
+ </summary>
+</member><member name="T:Screen2Doc.HotkeyException">
+	<summary>
+ Represents errors that occur in the HotkeyManager.
+ </summary>
+</member><member name="T:Screen2Doc.HotkeyCollection">
+	<summary>
+ Represents read only collection of HotkeyManager.Hotkey.
+ </summary>
+</member><member name="P:Screen2Doc.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:Screen2Doc.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:Screen2Doc.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>
