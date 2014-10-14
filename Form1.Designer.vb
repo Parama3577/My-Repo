@@ -125,13 +125,13 @@ Partial Class Form1
         'FeedbackToolStripMenuItem
         '
         Me.FeedbackToolStripMenuItem.Name = "FeedbackToolStripMenuItem"
-        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
         Me.FeedbackToolStripMenuItem.Text = "Feedback"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'Button1
@@ -147,7 +147,7 @@ Partial Class Form1
         Me.Button1.Size = New System.Drawing.Size(60, 60)
         Me.Button1.TabIndex = 1
         Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.ToolTip1.SetToolTip(Me.Button1, "Click to Capture Screen")
+        Me.ToolTip1.SetToolTip(Me.Button1, "Click to Capture Screen ( Ctrl + PrtSc )")
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2

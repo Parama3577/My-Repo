@@ -9,3 +9,9 @@ C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\obj\D
 C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\obj\Debug\Screen2Doc.exe
 C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\obj\Debug\Screen2Doc.xml
 C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\obj\Debug\Screen2Doc.pdb
+C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\bin\Debug\Screen2Doc.exe.config
+C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\bin\Debug\Screen2Doc.exe.manifest
+C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\bin\Debug\Screen2Doc.application
+C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\obj\Debug\Screen2Doc.TrustInfo.xml
+C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\obj\Debug\Screen2Doc.exe.manifest
+C:\Users\Rhine\Documents\Visual Studio 2008\Projects\Screen2Doc\Screen2Doc\obj\Debug\Screen2Doc.application
