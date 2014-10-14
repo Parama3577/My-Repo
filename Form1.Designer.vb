@@ -25,6 +25,8 @@ Partial Class Form1
         Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.GoToScreenshotsFolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ScreenshotsCapturePathToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.PromptForCaptionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -42,8 +44,6 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button
         Me.ToolTip4 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Button4 = New System.Windows.Forms.Button
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.GoToScreenshotsFolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -55,6 +55,19 @@ Partial Class Form1
         Me.MenuStrip1.Size = New System.Drawing.Size(284, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GoToScreenshotsFolderToolStripMenuItem})
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(48, 20)
+        Me.ToolStripMenuItem1.Text = "Tools"
+        '
+        'GoToScreenshotsFolderToolStripMenuItem
+        '
+        Me.GoToScreenshotsFolderToolStripMenuItem.Name = "GoToScreenshotsFolderToolStripMenuItem"
+        Me.GoToScreenshotsFolderToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
+        Me.GoToScreenshotsFolderToolStripMenuItem.Text = "Go to Screenshots Folder..."
         '
         'ToolsToolStripMenuItem
         '
@@ -112,13 +125,13 @@ Partial Class Form1
         'FeedbackToolStripMenuItem
         '
         Me.FeedbackToolStripMenuItem.Name = "FeedbackToolStripMenuItem"
-        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
+        Me.FeedbackToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.FeedbackToolStripMenuItem.Text = "Feedback"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'Button1
@@ -184,19 +197,6 @@ Partial Class Form1
         Me.Button4.TabIndex = 4
         Me.ToolTip4.SetToolTip(Me.Button4, "Reset Application")
         Me.Button4.UseVisualStyleBackColor = True
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GoToScreenshotsFolderToolStripMenuItem})
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(48, 20)
-        Me.ToolStripMenuItem1.Text = "Tools"
-        '
-        'GoToScreenshotsFolderToolStripMenuItem
-        '
-        Me.GoToScreenshotsFolderToolStripMenuItem.Name = "GoToScreenshotsFolderToolStripMenuItem"
-        Me.GoToScreenshotsFolderToolStripMenuItem.Size = New System.Drawing.Size(214, 22)
-        Me.GoToScreenshotsFolderToolStripMenuItem.Text = "Go to Screenshots Folder..."
         '
         'Form1
         '

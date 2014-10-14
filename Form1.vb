@@ -334,9 +334,7 @@ Public Class Form1
                 'mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><b>Screenshot " & x + 1 & "</b><u></u><u></u></span></p>"
                 mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><img width=""831"" height=""467"" src=""cid:" & x & ".jpg"" class=""></span><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d""><u></u><u></u></span></p>"
                 mailBody &= "<p><span style=""font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"">" & imgCaptions(x).ToString & "<u></u><u></u></span></p>"
-                If x <> imgCaptureCounter - 1 Then
-                    mailBody &= "<hr>"
-                End If
+                mailBody &= "<hr>"
 
             Next
             mailBody &= "</div>"
